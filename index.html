@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユニホームカスタマイザー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ユニホームカスタマイザー</h1>
+            <p>3Dユニホームをカスタマイズして、完璧なデザインを作成しましょう</p>
+        </div>
+
+        <div class="content">
+            <!-- 3Dビューアー -->
+            <div class="viewer-section">
+                <h2>ユニホームプレビュー</h2>
+                <div id="canvas-container" class="canvas-container">
+                    <canvas id="canvas"></canvas>
+                    <p class="instruction">マウスをドラッグして回転 | ホイールでズーム | Shift+ドラッグでロゴ調整 | Ctrl+Shift+ドラッグでロゴスケール</p>
+                </div>
+            </div>
+
+            <!-- コントロールパネル -->
+            <div class="control-section">
+                <h2>カスタマイズ</h2>
+                
+                <div class="control-group">
+                    <label for="designPreset">デザインテンプレート:</label>
+                    <select id="designPreset">
+                        <option value="custom">カスタム</option>
+                        <option value="design_1">デザイン1 - 赤と白</option>
+                        <option value="design_2">デザイン2 - 青と黄</option>
+                        <option value="design_3">デザイン3 - 黒と金</option>
+                        <option value="design_4">デザイン4 - 緑と白</option>
+                        <option value="design_5">デザイン5 - 紫と白</option>
+                        <option value="design_6">デザイン6 - オレンジと黒</option>
+                        <option value="design_7">デザイン7 - ピンクと白</option>
+                        <option value="design_8">デザイン8 - 紺と金</option>
+                        <option value="design_9">デザイン9 - グレーと青</option>
+                        <option value="design_10">デザイン10 - 赤と黒</option>
+                        <option value="design_11">デザイン11 - 白と赤</option>
+                        <option value="design_12">デザイン12 - 黄と青</option>
+                        <option value="design_13">デザイン13 - 深紫と銀</option>
+                        <option value="design_14">デザイン14 - テラコッタと白</option>
+                        <option value="design_15">デザイン15 - 黒と白</option>
+                        <option value="design_16">デザイン16 - 緑と黄</option>
+                        <option value="design_17">デザイン17 - 藍色と白</option>
+                        <option value="design_18">デザイン18 - 赤紫と黒</option>
+                        <option value="design_19">デザイン19 - 青緑と白</option>
+                        <option value="design_20">デザイン20 - 栗色と黄</option>
+                        <option value="design_21">デザイン21 - 青紫と白</option>
+                        <option value="design_22">デザイン22 - 朱色と白</option>
+                        <option value="design_23">デザイン23 - 深緑と金</option>
+                        <option value="design_24">デザイン24 - スレートグレーと白</option>
+                        <option value="design_25">デザイン25 - サンゴと白</option>
+                        <option value="design_26">デザイン26 - インディゴと白</option>
+                        <option value="design_27">デザイン27 - 栗と白</option>
+                        <option value="design_28">デザイン28 - オリーブと黄</option>
+                        <option value="design_29">デザイン29 - 紅色と白</option>
+                        <option value="design_30">デザイン30 - くすみ青と白</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="colorPicker">ユニホームカラー:</label>
+                    <input type="color" id="colorPicker" value="#FF0000" title="ユニホームの色を選択">
+                    <span id="colorValue">#FF0000</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="patternSelect">パターン:</label>
+                    <select id="patternSelect">
+                        <option value="solid">無地</option>
+                        <option value="vertical_stripes">縦ストライプ</option>
+                        <option value="horizontal_lines">横線</option>
+                        <option value="diagonal_lines">斜線</option>
+                        <option value="checkerboard">市松模様</option>
+                        <option value="half_split">ハーフスプリット</option>
+                        <option value="dots">ドット</option>
+                        <option value="plaid">プラッド</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="logoUpload">ロゴアップロード:</label>
+                    <input type="file" id="logoUpload" accept="image/*" title="ロゴ画像をアップロード">
+                    <button id="clearLogoButton" type="button">クリア</button>
+                </div>
+
+                <div class="control-group">
+                    <label for="logoPosition">ロゴ配置位置:</label>
+                    <select id="logoPosition">
+                        <option value="front">正面</option>
+                        <option value="back">背面</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="logoScale">ロゴ拡大率:</label>
+                    <input type="range" id="logoScale" min="0.3" max="2" step="0.05" value="1">
+                    <span id="logoScaleValue">100%</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="logoOffsetX">ロゴ位置 X:</label>
+                    <input type="range" id="logoOffsetX" min="-0.5" max="0.5" step="0.05" value="0">
+                    <span id="logoOffsetXValue">0.00</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="logoOffsetY">ロゴ位置 Y:</label>
+                    <input type="range" id="logoOffsetY" min="-0.5" max="0.5" step="0.05" value="0">
+                    <span id="logoOffsetYValue">0.00</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="logoLock">ロゴ位置ロック:</label>
+                    <input type="checkbox" id="logoLock">
+                </div>
+
+                <div class="control-group">
+                    <label for="sleeveColorPicker">袖カラー:</label>
+                    <input type="color" id="sleeveColorPicker" value="#FF0000" title="袖の色を選択">
+                    <span id="sleeveColorValue">#FF0000</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="numberInput">背番号:</label>
+                    <input type="number" id="numberInput" value="23" min="0" max="99" title="背番号を入力">
+                    <label for="numberToggle" style="min-width: auto;">
+                        <input type="checkbox" id="numberToggle" checked>
+                        表示
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    <label for="stripColorPicker">パターンカラー:</label>
+                    <input type="color" id="stripColorPicker" value="#FFFFFF" title="パターンの色を選択">
+                    <span id="stripColorValue">#FFFFFF</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="sleeveStyle">袖スタイル:</label>
+                    <select id="sleeveStyle">
+                        <option value="full">長袖</option>
+                        <option value="half">半袖</option>
+                        <option value="none">ノースリーブ</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="rotationSpeed">自動回転:</label>
+                    <input type="checkbox" id="rotationSpeed" title="自動回転を有効/無効">
+                    <span>有効</span>
+                </div>
+
+                <button id="resetButton" class="btn-reset">リセット</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js ライブラリ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
